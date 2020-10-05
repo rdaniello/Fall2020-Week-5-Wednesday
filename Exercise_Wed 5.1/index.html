@@ -37,24 +37,21 @@
     // get the data
     d3.csv('./data_sample.csv', d3.autoType)
         .then(function (data){
-            console.log(data);
+
             // get the data and svg element extent (range and domain)
             // viewbox - range
             let rng = svg.attr('viewBox').split(' ');
             rng = d3.map(rng, function(d){return parseInt(d)});
             let xRng = [rng[0] + margins.x, rng[2] - margins.x];
             let yRng = [rng[3] - margins.y, rng[1] + margins.y];
-            console.log(xRng);
-            console.log(yRng);
+
             // data, date - domain
             let date_extent = d3.extent(data,
                 function (d){return d.date})
-            console.log(date_extent)
             let cost_extent = d3.extent(data,
                 function (d){return d.EstimatedCost})
             // set 0 as min
             cost_extent[0] = 0;
-            console.log(cost_extent)
 
             // make the X and Y scale
             let xScale = d3.scaleTime().domain(date_extent).range(xRng)
@@ -96,11 +93,8 @@
                 .attr('transform', 'translate('+(margins.x)+','+(0)+")")
                 .call(d3.axisLeft(yScale));
 
-            // styling 
-
+            // styling - done inline or with css
         })
-
-
 </script>
 </body>
 </html>

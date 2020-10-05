@@ -27,13 +27,11 @@
     // get the data
     d3.csv('./data_sample.csv', d3.autoType)
         .then(function (data){
-            console.log(data);
 
             // create stack
             let stack = d3.stack()
                 .keys(['EstimatedCost','RawMaterial','Workmanship','YearlyStorage'])
             let stackSeries = stack(data);
-            console.log(stackSeries);
 
             // get the scale for the x axis
             let rng = svg.attr('viewBox').split(' ');
@@ -76,8 +74,6 @@
                 .attr('y', function(d,i){return i * 30 + 18;})
                 .text(function(d){return (((d.date.getMonth() +1).toString()).padStart(2,'0')) + ' / ' + d.date.getFullYear();})
         })
-
-    
 </script>
 </body>
 </html>
